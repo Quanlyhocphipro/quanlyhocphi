@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Quản Lý Học Phí Pro - Hệ Thống Quản Lý Lớp Học Toàn Diện</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #f1f5f9; }
+    iframe { width: 100%; height: 100%; border: none; display: block; }
+  </style>
+</head>
+<body>
+  <iframe id="appFrame" allow="clipboard-read; clipboard-write"></iframe>
+  <script>
+    // Dán link Web App (/exec) từ Google Apps Script của bạn vào dòng dưới:
+    var GAS_URL = "https://script.google.com/macros/s/AKfycbwGzqS1N4OKMqh6c7qoSpr9Ns7a7RbRV-ysjnkhWAmL4yKxM5lHINrsw8AJnW9HyIfSDA/exec";
+    var sep = window.location.search ? "&" : "?";
+    var hostParam = "host=" + encodeURIComponent(window.location.origin + window.location.pathname);
+    document.getElementById("appFrame").src = GAS_URL + window.location.search + sep + hostParam;
+  </script>
+</body>
+</html>
