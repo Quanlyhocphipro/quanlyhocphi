@@ -3,9 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#4f46e5">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Học Phí Pro">
   <meta name="mobile-web-app-capable" content="yes">
   <title>Quản Lý Học Phí Pro - Hệ Thống Quản Lý Lớp Học Toàn Diện</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+
   <style>
     html, body {
       margin: 0;
@@ -22,7 +30,6 @@
       border: none;
       display: block;
     }
-    /* Màn hình chờ khởi động mượt mà, tự ẩn khi Web App nạp xong */
     #bootLoader {
       position: fixed;
       inset: 0;
@@ -71,7 +78,6 @@
   </iframe>
 
   <script>
-    // Link Web App (/exec) từ Google Apps Script
     var GAS_URL = "https://script.google.com/macros/s/AKfycbwGzqS1N4OKMqh6c7qoSpr9Ns7a7RbRV-ysjnkhWAmL4yKxM5lHINrsw8AJnW9HyIfSDA/exec";
 
     function hideBootLoader() {
@@ -91,9 +97,15 @@
       var frame = document.getElementById("appFrame");
       frame.src = finalUrl;
 
-      // Dự phòng tắt màn hình chờ sau 5 giây nếu mạng yếu
       setTimeout(hideBootLoader, 5000);
     })();
+
+    // Đăng ký Service Worker để kích hoạt cài đặt PWA
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() {
+        navigator.serviceWorker.register("./sw.js").catch(function() {});
+      });
+    }
   </script>
 </body>
 </html>
